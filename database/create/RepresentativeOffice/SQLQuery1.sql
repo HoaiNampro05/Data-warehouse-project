@@ -3,7 +3,7 @@ USE RepresentativeOffice;
 CREATE TABLE Customers(
  CustomerId char(10) not null,
  CustomerName nvarchar(50) not null,
- CityID char(4) not null,
+ CityId char(4) not null,
  FirstOrderDate DATE,
  CONSTRAINT PK_Customers
  PRIMARY KEY (CustomerID)
@@ -11,7 +11,7 @@ CREATE TABLE Customers(
 CREATE TABLE TravelCustomers(
 	CustomerId char(10) not null,
 	TourGuide nvarchar(50) not null,
-	TravelTime DATE,
+	Time DATE,
 	CONSTRAINT PK_TravelCustomers
 	PRIMARY KEY (CustomerId),
 	CONSTRAINT FK_TravelCustomers_Customers
@@ -24,7 +24,7 @@ CREATE TABLE TravelCustomers(
 CREATE TABLE PostalCustomers(
 	CustomerId char(10) not null,
 	PostAddress nvarchar(50) not null,
-	PostTime DATE,
+	Time DATE,
 	CONSTRAINT PK_PostalCustomers
 	PRIMARY KEY (CustomerId),
 	CONSTRAINT FK_PostalCustomers_Customers
