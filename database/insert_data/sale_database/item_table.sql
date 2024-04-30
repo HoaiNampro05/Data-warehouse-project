@@ -62,3 +62,7 @@ INSERT INTO Items (ItemId, Descriptions, size, weight, price, Time) VALUES ('IT0
 INSERT INTO Items (ItemId, Descriptions, size, weight, price, Time) VALUES ('IT00000048', N'Bình giữ nhiệt siêu bền', 'M', 300, 100000, '2025-12-12');
 INSERT INTO Items (ItemId, Descriptions, size, weight, price, Time) VALUES ('IT00000049', N'Tai nghe chụp tai', 'S', 100, 80000, '2026-01-30');
 INSERT INTO Items (ItemId, Descriptions, size, weight, price, Time) VALUES ('IT00000050', N'Ổ cắm điện thông minh WiFi', 'XL', 500, 200000, '2026-02-15');
+
+update items
+set time = '2023-09-15'
+where time> '2023-10-01'
