@@ -1,4 +1,5 @@
-﻿INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
+﻿
+INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
 VALUES ('CT01', N'Hà Nội', N'Địa chỉ văn phòng Hà Nội', N'Miền bắc', '2024-04-28');
 
 INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
@@ -28,3 +29,5 @@ VALUES ('CT09', N'Vũng Tàu', N'Địa chỉ văn phòng Vũng Tàu', N'Miền 
 INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
 VALUES ('CT10', N'Đồng Nai', N'Địa chỉ văn phòng Đồng Nai', N'Miền nam', '2024-04-28');
 
+update RepresentativeOffices
+set time = '2020-01-02'

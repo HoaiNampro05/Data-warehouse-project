@@ -43,5 +43,7 @@ INSERT INTO Stores (StoreId, CityId, PhoneNumber, Time) VALUES ('ST00000020', 'C
 update Stores
 set Time = '2016-02-02'
 where Time > '2022-01-01';
-
+update stores
+set time = '2023-01-02'
+where time < '2021-11-12';
 select count(*) from stores;

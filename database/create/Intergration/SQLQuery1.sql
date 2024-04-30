@@ -63,7 +63,7 @@ CREATE TABLE Stores(
 CREATE TABLE Items(
 	ItemId char(10) not null,
 	Descriptions nvarchar(255) not null,
-	Size int not null,
+	Size nvarchar(20) not null,
 	Weight int not null,
 	Price int not null,
 	Time date not null,
