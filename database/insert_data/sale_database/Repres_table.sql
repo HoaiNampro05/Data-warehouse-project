@@ -28,23 +28,3 @@ VALUES ('CT09', N'Vũng Tàu', N'Địa chỉ văn phòng Vũng Tàu', N'Miền 
 INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
 VALUES ('CT10', N'Đồng Nai', N'Địa chỉ văn phòng Đồng Nai', N'Miền nam', '2024-04-28');
 
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT11', N'Quảng Ninh', N'Địa chỉ văn phòng Quảng Ninh', N'Miền bắc', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT12', N'Hải Dương', N'Địa chỉ văn phòng Hải Dương', N'Miền bắc', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT13', N'Bình Dương', N'Địa chỉ văn phòng Bình Dương', N'Miền nam', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT14', N'Long An', N'Địa chỉ văn phòng Long An', N'Miền nam', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT15', N'Hưng Yên', N'Địa chỉ văn phòng Hưng Yên', N'Miền bắc', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT16', N'Bắc Ninh', N'Địa chỉ văn phòng Bắc Ninh', N'Miền bắc', '2024-04-28');
-
-INSERT INTO RepresentativeOffices (CityId, CityName, OfficeAddress, State, Time)
-VALUES ('CT17', N'Nam Định', N'Địa chỉ văn phòng Nam Định', N'Miền bắc', '2024-04-28');
