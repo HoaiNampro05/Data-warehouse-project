@@ -1,5 +1,5 @@
 CREATE DATABASE datawarehouse
-drop database datawarehouse
+use datawarehouse;
 CREATE TABLE DimItem (
 	ItemKey char(10) not null,
 	Descriptions nvarchar(255) not null,
@@ -14,7 +14,7 @@ CREATE TABLE DimTime (
 	TimeKey char(10) not null,
 	Day int not null,
 	Month int not null,
-	Quater int not null,
+	Quarter int not null,
 	Year int not null
 	CONSTRAINT PK_Time
 	PRIMARY KEY (TimeKey)
@@ -54,7 +54,7 @@ CREATE TABLE DimCustomers (
 	REFERENCES DimRepresentativeOffice(CityKey)
 );
 
-CREATE TABLE FactStoreItem(
+CREATE TABLE FactStoreItems(
 	TimeKey char(10) not null,
 	ItemKey char(10) not null,
 	StoreKey char(10) not null,
