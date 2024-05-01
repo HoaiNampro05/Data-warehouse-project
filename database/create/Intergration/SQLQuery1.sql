@@ -1,5 +1,5 @@
-CREATE DATABASE Intergration;
-USE Intergration;
+CREATE DATABASE Integration;
+USE Integration;
 CREATE TABLE RepresentativeOffices(
 	CityId char(4) not null,
 	CityName nvarchar(50) not null,
@@ -100,7 +100,7 @@ CREATE TABLE OrderedItems(
 	OrderId char(10) not null,
 	ItemId char(10) not null,
 	OrderedQuantity int not null,
-	OrderPrice int not null,
+	OrderCost int not null,
 	Time date,
 	CONSTRAINT PK_OrderedItems
 	PRIMARY KEY(OrderId,ItemId),

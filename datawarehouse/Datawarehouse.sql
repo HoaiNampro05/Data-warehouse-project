@@ -92,4 +92,5 @@ CREATE TABLE FactOrderItems (
 	REFERENCES DimCustomer(CustomerKey)
 )
 
+select * from DimRepresentativeOffice;
 

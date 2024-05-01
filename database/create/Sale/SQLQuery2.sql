@@ -55,7 +55,7 @@ CREATE TABLE OrderedItems(
 	OrderId char(10) not null,
 	ItemId char(10) not null,
 	OrderedQuantity int not null,
-	OrderPrice int not null,
+	OrderCost int not null,
 	Time date,
 	CONSTRAINT PK_OrderedItems
 	PRIMARY KEY(OrderId,ItemId),
