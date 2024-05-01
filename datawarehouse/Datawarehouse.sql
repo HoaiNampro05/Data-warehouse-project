@@ -1,5 +1,5 @@
-CREATE DATABASE Warehouse
-
+CREATE DATABASE datawarehouse
+drop database datawarehouse
 CREATE TABLE DimItem (
 	ItemKey char(10) not null,
 	Descriptions nvarchar(255) not null,
@@ -12,9 +12,9 @@ CREATE TABLE DimItem (
 
 CREATE TABLE DimTime (
 	TimeKey char(10) not null,
-	DayOfMonth int not null,
-	MonthOfQuater int not null,
-	QuaterOfYear int not null,
+	Day int not null,
+	Month int not null,
+	Quater int not null,
 	Year int not null
 	CONSTRAINT PK_Time
 	PRIMARY KEY (TimeKey)
@@ -45,8 +45,8 @@ CREATE TABLE DimCustomers (
 	CustomerKey char(10) not null,
 	FullName nvarchar(50) not null,
 	CityKey char(10) not null,
-	TravelTourGuide nvarchar(50) not null,
-	PostalAddress nvarchar(50) not null,
+	TravelCustomer bit not null,
+	PostalAddress bit not null,
 	CONSTRAINT PK_Customers
 	PRIMARY KEY (CustomerKey),
 	CONSTRAINT PK_CustomerOfCity
@@ -58,7 +58,7 @@ CREATE TABLE FactStoreItem(
 	TimeKey char(10) not null,
 	ItemKey char(10) not null,
 	StoreKey char(10) not null,
-	QuantityOfStore int not null,
+	Quantity int not null,
 	CONSTRAINT PK_TimeOfStoreItems
 	FOREIGN KEY (TimeKey)
 	REFERENCES DimTime(TimeKey),
@@ -88,10 +88,4 @@ CREATE TABLE FactOrderItems (
 	REFERENCES DimCustomers(CustomerKey)
 )
 
-DROP TABLE DimItem
-DROP TABLE DimStore
-DROP TABLE DimRepresentativeOffice
-DROP TABLE DimCustomers
-DROP TABLE DimTime
-DROP TABLE FactStoreItem
-DROP TABLE FactOrderItems
+
