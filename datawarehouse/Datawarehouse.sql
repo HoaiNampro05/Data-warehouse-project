@@ -44,7 +44,7 @@ CREATE TABLE DimStore (
 	REFERENCES DimRepresentativeOffice(CityKey)
 );
 
-CREATE TABLE DimCustomers (
+CREATE TABLE DimCustomer (
 	CustomerKey char(10) not null,
 	FullName nvarchar(50) not null,
 	CityKey char(10) not null,
