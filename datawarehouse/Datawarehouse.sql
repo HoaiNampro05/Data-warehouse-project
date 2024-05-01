@@ -1,4 +1,5 @@
-CREATE DATABASE datawarehouse
+drop database datawarehouse;
+CREATE DATABASE datawarehouse;
 use datawarehouse;
 CREATE TABLE DimItem (
 	ItemKey char(10) not null,
@@ -6,6 +7,7 @@ CREATE TABLE DimItem (
 	Size nvarchar(20) not null,
 	Weight int not null,
 	Price int not null,
+	Time date,
 	CONSTRAINT PK_Items
 	PRIMARY KEY (ItemKey)
 );
@@ -34,6 +36,7 @@ CREATE TABLE DimStore (
 	StoreKey char (10) not null,
 	CityKey char (10) not null,
 	PhoneNumber char(12) not null,
+	Time date,
 	CONSTRAINT PK_Store
 	PRIMARY KEY (StoreKey),
 	CONSTRAINT FK_City
@@ -47,6 +50,7 @@ CREATE TABLE DimCustomers (
 	CityKey char(10) not null,
 	TravelCustomer bit not null,
 	PostalAddress bit not null,
+	FirstOrderDate DATE,
 	CONSTRAINT PK_Customers
 	PRIMARY KEY (CustomerKey),
 	CONSTRAINT PK_CustomerOfCity
