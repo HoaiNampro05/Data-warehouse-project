@@ -48,8 +48,8 @@ CREATE TABLE DimCustomer (
 	CustomerKey char(10) not null,
 	CustomerName nvarchar(50) not null,
 	CityKey char(10) not null,
-	TravelCustomer bit not null,
-	PostalAddress bit not null,
+	Travel bit not null,
+	Postal bit not null,
 	FirstOrderDate DATE,
 	CONSTRAINT PK_Customers
 	PRIMARY KEY (CustomerKey),
