@@ -46,7 +46,7 @@ CREATE TABLE DimStore (
 
 CREATE TABLE DimCustomer (
 	CustomerKey char(10) not null,
-	FullName nvarchar(50) not null,
+	CustomerName nvarchar(50) not null,
 	CityKey char(10) not null,
 	TravelCustomer bit not null,
 	PostalAddress bit not null,
@@ -89,7 +89,7 @@ CREATE TABLE FactOrderItems (
 	REFERENCES DimItem(ItemKey),
 	CONSTRAINT PK_OrderOfCustomer
 	FOREIGN KEY (CustomerKey)
-	REFERENCES DimCustomers(CustomerKey)
+	REFERENCES DimCustomer(CustomerKey)
 )
 
 
