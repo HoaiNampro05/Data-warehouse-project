@@ -418,6 +418,119 @@ FROM (
 ORDER BY f.CityName;
 
 
+IF OBJECT_ID('OrderMonthCube', 'U') IS NOT NULL
+BEGIN
+	TRUNCATE TABLE OrderMonthCube;
+	SELECT * FROM OrderMonthCube;
+	INSERT INTO OrderMonthCube
+	SELECT top 9999999  f.Month, f.Year, f.OrderedQuantity, f.OrderedCost, f.Profit
+	FROM (
+		Select  t.Month, t.Year, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimTime t
+		where t.TimeKey = ft.TimeKey 
+		group by  t.Month, t.Year
+	) AS f order by f.Year, f.Month;
+    PRINT 'Bang ton tai'
+END
+ELSE
+BEGIN
+	SELECT top 9999999 f.Month, f.Year, f.OrderedQuantity, f.OrderedCost, f.Profit
+	INTO OrderMonthCube
+	FROM (
+		Select t.Month, t.Year, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimTime t
+		where t.TimeKey = ft.TimeKey
+		group by t.Month, t.Year
+	) AS f order by f.Year, f.Month;
+    PRINT 'Bang khong ton tai'
+END
+
+
+
+IF OBJECT_ID('OrderDayCube', 'U') IS NOT NULL
+BEGIN
+	TRUNCATE TABLE OrderDayCube;
+	SELECT * FROM OrderDayCube;
+	INSERT INTO OrderDayCube
+	SELECT top 9999999  f.Day, f.Month, f.Year, f.OrderedQuantity, f.OrderedCost, f.Profit
+	FROM (
+		Select  t.Day, t.Month, t.Year, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimTime t
+		where t.TimeKey = ft.TimeKey 
+		group by  t.Day, t.Month, t.Year
+	) AS f order by f.Year, f.Month, f.Day;
+    PRINT 'Bang ton tai'
+END
+ELSE
+BEGIN
+	SELECT top 9999999 f.Day, f.Month, f.Year, f.OrderedQuantity, f.OrderedCost, f.Profit
+	INTO OrderDayCube
+	FROM (
+		Select t.Day, t.Month, t.Year, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimTime t
+		where t.TimeKey = ft.TimeKey
+		group by t.Day, t.Month, t.Year
+	) AS f order by f.Year, f.Month, f.Day;
+    PRINT 'Bang khong ton tai'
+END
+
+
+
+IF OBJECT_ID('OrderItemCustomerOfStateCube', 'U') IS NOT NULL
+BEGIN
+	TRUNCATE TABLE OrderItemCustomerOfStateCube;
+	SELECT * FROM OrderItemCustomerOfStateCube;
+	INSERT INTO OrderItemCustomerOfStateCube
+	SELECT top 9999999 f.ItemKey, f.Descriptions, f.State, f.OrderedQuantity, f.OrderedCost, f.Profit
+	FROM (
+		Select i.ItemKey, i.Descriptions, ct.State, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimCustomer cus, DimItem i, DimRepresentativeOffice ct
+		where i.ItemKey = ft.ItemKey and cus.CustomerKey = ft.CustomerKey and cus.CityKey = ct.CityKey
+		group by i.ItemKey, i.Descriptions, ct.State
+	) AS f order by f.ItemKey
+    PRINT 'Bang ton tai'
+END
+ELSE
+BEGIN
+	SELECT top 9999999 f.ItemKey, f.Descriptions, f.State, f.OrderedQuantity, f.OrderedCost, f.Profit
+	INTO OrderItemCustomerOfStateCube
+	FROM (
+		Select i.ItemKey, i.Descriptions, ct.State, sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft, DimCustomer cus, DimItem i, DimRepresentativeOffice ct
+		where i.ItemKey = ft.ItemKey and cus.CustomerKey = ft.CustomerKey and cus.CityKey = ct.CityKey
+		group by i.ItemKey, i.Descriptions,  ct.State
+	) AS f order by f.ItemKey;
+    PRINT 'Bang khong ton tai'
+END
+
+
+IF OBJECT_ID('OdersCube', 'U') IS NOT NULL
+BEGIN
+	TRUNCATE TABLE OdersCube;
+	SELECT * FROM OdersCube;
+	INSERT INTO OdersCube
+	SELECT top 9999999  f.OrderedQuantity, f.OrderedCost, f.Profit
+	FROM (
+		Select  sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft
+	) AS f
+    PRINT 'Bang ton tai'
+END
+ELSE
+BEGIN
+	SELECT top 9999999 f.OrderedQuantity, f.OrderedCost, f.Profit
+	INTO OdersCube
+	FROM (
+		Select sum(ft.OrderedQuantity) as OrderedQuantity, sum(ft.OrderedCost) as OrderedCost, sum(ft.Profit) as Profit
+		from FactOrderItems ft
+	) AS f;
+    PRINT 'Bang khong ton tai'
+END
+
+
+
+
+
 
 
 
