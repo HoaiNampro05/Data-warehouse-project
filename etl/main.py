@@ -61,6 +61,7 @@ END = datetime.date.today()
 START = END - datetime.timedelta(days=1)
 END = END.strftime("%Y-%m-%d")
 START = START.strftime("%Y-%m-%d")
+# START = '2008-02-02'
 
 execute = startETL(URL_REPRES, URL_SALE, URL_IDB, URL_DW, properties, spark_connector)
 execute.executeOLTPtoIDB(START,END)

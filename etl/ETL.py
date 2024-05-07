@@ -131,11 +131,13 @@ class IDBtoDWH:
         df_od.createOrReplaceTempView("Orders")
         df_ot = self.spark.read.jdbc(url=self.URL_IDB, table="OrderedItems", properties=self.properties)
         df_ot.createOrReplaceTempView("OrderedItems")
-        query = f""" SELECT ot.Time, ot.ItemId AS ItemKey, cus.CustomerId AS CustomerKey,
-            ot.OrderedQuantity, ot.OrderCost, ot.OrderCost - (ot.OrderedQuantity * it.Price) AS Profit
-        FROM OrderedItems ot, Items it, Customers cus, Orders od
-        WHERE ot.time>='{start}' and ot.time<'{end}' and ot.ItemId = it.ItemId AND ot.OrderId = od.OrderId AND od.CustomerId = cus.CustomerId;
-        """
+        query = f""" 
+        SELECT ot.Time, ot.ItemId AS ItemKey, cus.CustomerId AS CustomerKey,
+sum(ot.OrderedQuantity) as OrderedQuantity, sum(ot.OrderCost) as OrderCost, sum(ot.OrderCost - (ot.OrderedQuantity * it.Price))AS Profit
+FROM OrderedItems ot, Items it, Customers cus, Orders od
+WHERE ot.time>='{start}' and ot.time<='{end}' and ot.ItemId = it.ItemId AND ot.OrderId = od.OrderId AND od.CustomerId = cus.CustomerId
+group by ot.Time, ot.ItemId, cus.CustomerId
+"""
         result = self.spark.sql(query)
         result = result.withColumn("TimeKey", date_format(result.Time, "yyyyMMdd"))
         result = result.select("TimeKey","ItemKey","CustomerKey","OrderedQuantity","OrderCost","Profit")
