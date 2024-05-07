@@ -45,9 +45,9 @@ class OLTPtoIDB:
 
 
     def SaleToIDB(self, sale_table, idb_table, start, end):
-        condition = f"time<='{end}' and time >'{start}'"
+        condition = f"time<'{end}' and time >='{start}'"
         if sale_table=="Orders":
-            condition = f"OrderDate<='{end}' and OrderDate >'{start}'"
+            condition = f"OrderDate<'{end}' and OrderDate >='{start}'"
         print(sale_table,condition)
         df = self.spark.read.jdbc(url=self.URL_SALE, table=sale_table, properties=self.properties).filter(condition)
         df.write.jdbc(url=self.URL_IDB,
@@ -57,9 +57,9 @@ class OLTPtoIDB:
         return 0
     
     def RepreToIDB(self, repres_table, idb_table, start, end):
-        condition = f"time<='{end}' and time >'{start}'"
+        condition = f"time<'{end}' and time >='{start}'"
         if repres_table=="Customers":
-            condition = f"FirstOrderDate<='{end}' and FirstOrderDate >'{start}'"
+            condition = f"FirstOrderDate<'{end}' and FirstOrderDate >='{start}'"
         print(repres_table,condition)
         df = self.spark.read.jdbc(url=self.URL_REPRES, table=repres_table, properties=self.properties).filter(condition)
         df.write.jdbc(url=self.URL_IDB,
@@ -77,7 +77,7 @@ class IDBtoDWH:
         self.spark = spark
 
     def nochange_table_idb_to_dw(self, idb_table, wh_table,start, end):
-        condition = f"time<='{end}' and time >'{start}'"
+        condition = f"time<'{end}' and time >='{start}'"
         print(idb_table,condition)
         df = self.spark.read.jdbc(url=self.URL_IDB, table=idb_table, properties=self.properties).filter(condition)
         if idb_table=="RepresentativeOffices":
